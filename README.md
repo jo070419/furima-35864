@@ -7,7 +7,8 @@
 | email                 | string     | null: false |
 | nickname              | string     | null: false |
 | encrypted_password    | string     | null: false |
-| birthday              | string     | null: false |
+| name                  | string     | null: false |
+| birthday              | date       | null: false |
 
 ### Association
 
@@ -16,25 +17,23 @@
 
 ## items table
 
-| Column            | Type        | Options     |
-|-------------------|-------------|-------------|
-| image             |             | null: false |
-| name              | string      | null: false |
-| description       | text        | null: false |
-| category          | text        | null: false |
-| status            | text        | null: false |
-| shipping_charge   | string      | null: false |
-| shipping_area     | string      | null: false |
-| day_to_ship       | string      | null: false |
-| price             | string      | null: false |
-| comment           | text        | null: false |
+| Column               | Type        | Options     |
+|----------------------|-------------|-------------|
+| name                 | string      | null: false |
+| description          | text        | null: false |
+| category_id          | integer     | null: false |
+| status_id            | integer     | null: false |
+| shipping_charge_id   | integer     | null: false |
+| shipping_area_id     | integer     | null: false |
+| day_to_ship_id       | integer     | null: false |
+| price                | string      | null: false |
 
 ### Association
 
 * belongs_to :informations
 * has_one :records
 
-## records table
+## purchases tablef
 
 | Column          | Type      | Options     |
 |-----------------|-----------|-------------|
@@ -47,11 +46,12 @@
 
 ## information table
 
-| Column        | Type    | Options     |
-|---------------|---------|-------------|
-| postal_code   | string  | null: false |
-| prefecture    | string  | null: false |
-| municipality  | string  | null: false |
-| house_number  | string  | null: false |
-| building      | string  |             |
-| phone_number  | string  | null: false |
+| Column        | Type        | Options           |
+|---------------|-------------|-------------------|
+| postal_code   | string      | null: false       |
+| prefecture    | string      | null: false       |
+| municipality  | string      | null: false       |
+| house_number  | string      | null: false       |
+| building      | string      |                   |
+| phone_number  | string      | null: false       |
+| purchase      | references  | foreign_key: true |
