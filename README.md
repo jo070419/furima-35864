@@ -1,24 +1,57 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column                | Type       | Options     |
+|-----------------------|------------|------------ |
+| email                 | string     | null: false |
+| nickname              | string     | null: false |
+| encrypted_password    | string     | null: false |
+| birthday              | string     | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+* has_many :items
+* has_many :records
 
-* Configuration
+## items table
 
-* Database creation
+| Column            | Type        | Options     |
+|-------------------|-------------|-------------|
+| image             |             | null: false |
+| name              | string      | null: false |
+| description       | text        | null: false |
+| category          | text        | null: false |
+| status            | text        | null: false |
+| shipping_charge   | string      | null: false |
+| shipping_area     | string      | null: false |
+| day_to_ship       | string      | null: false |
+| price             | string      | null: false |
+| comment           | text        | null: false |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+* belongs_to :informations
+* has_one :records
 
-* Services (job queues, cache servers, search engines, etc.)
+## records table
 
-* Deployment instructions
+| Column          | Type      | Options     |
+|-----------------|-----------|-------------|
+| date_and_time   | string    | null: false |
 
-* ...
+### Asspcoation
+
+* belongs_to : users
+* has_one :items
+
+## information table
+
+| Column        | Type    | Options     |
+|---------------|---------|-------------|
+| postal_code   | string  | null: false |
+| prefecture    | string  | null: false |
+| municipality  | string  | null: false |
+| house_number  | string  | null: false |
+| building      | string  |             |
+| phone_number  | string  | null: false |
