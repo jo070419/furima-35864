@@ -2,18 +2,21 @@
 
 ## users table
 
-| Column                | Type       | Options     |
-|-----------------------|------------|------------ |
-| email                 | string     | null: false |
-| nickname              | string     | null: false |
-| encrypted_password    | string     | null: false |
-| name                  | string     | null: false |
-| birthday              | date       | null: false |
+| Column                | Type       | Options                  |
+|-----------------------|------------|--------------------------|
+| email                 | string     | null: false unique: true |
+| nickname              | string     | null: false              |
+| encrypted_password    | string     | null: false              |
+| last_name             | string     | null: false              |
+| first_name            | string     | null: false              |
+| ruby_last_name        | string     | null: false              |
+| ruby_first_name       | string     | null: false              |
+| birthday              | date       | null: false              |
 
 ### Association
 
 * has_many :items
-* has_many :records
+* has_many :purchases
 
 ## items table
 
@@ -26,30 +29,32 @@
 | shipping_charge_id   | integer     | null: false |
 | shipping_area_id     | integer     | null: false |
 | day_to_ship_id       | integer     | null: false |
-| price                | string      | null: false |
+| price                | integer     | null: false |
 
 ### Association
 
-* belongs_to :informations
-* has_one :records
+* belongs_to :user
+* has_one :purchase
 
-## purchases tablef
+## purchases table
 
-| Column          | Type      | Options     |
-|-----------------|-----------|-------------|
-| date_and_time   | string    | null: false |
+| Column          | Type        | Options                       |
+|-----------------|-------------|-------------------------------|
+| date_and_time   | string      | null: false                   |
+| user            | references  | null: false foreign_key: true |
+| item            | references  | null: false foreign_key: true |
 
 ### Asspcoation
 
-* belongs_to : users
-* has_one :items
+* has_many : users
+* belongs_to :item
 
 ## information table
 
 | Column        | Type        | Options           |
 |---------------|-------------|-------------------|
 | postal_code   | string      | null: false       |
-| prefecture    | string      | null: false       |
+| prefecture    | integer     | null: false       |
 | municipality  | string      | null: false       |
 | house_number  | string      | null: false       |
 | building      | string      |                   |
