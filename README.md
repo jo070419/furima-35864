@@ -40,23 +40,28 @@
 
 | Column          | Type        | Options                       |
 |-----------------|-------------|-------------------------------|
-| date_and_time   | string      | null: false                   |
 | user            | references  | null: false foreign_key: true |
 | item            | references  | null: false foreign_key: true |
 
-### Asspcoation
+### Association
 
-* has_many : users
+* belongs_to :user
 * belongs_to :item
+* belongs_to :information
 
-## information table
+## informations table
 
-| Column        | Type        | Options           |
-|---------------|-------------|-------------------|
-| postal_code   | string      | null: false       |
-| prefecture    | integer     | null: false       |
-| municipality  | string      | null: false       |
-| house_number  | string      | null: false       |
-| building      | string      |                   |
-| phone_number  | string      | null: false       |
-| purchase      | references  | foreign_key: true |
+| Column            | Type        | Options           |
+|-------------------|-------------|-------------------|
+| postal_code       | string      | null: false       |
+| shipping_area_id  | integer     | null: false       |
+| municipality      | string      | null: false       |
+| house_number      | string      | null: false       |
+| building          | string      |                   |
+| phone_number      | string      | null: false       |
+| purchase          | references  | foreign_key: true |
+
+### Association
+
+* has_one :purchase
+* belongs_to :item
