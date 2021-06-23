@@ -20,16 +20,17 @@
 
 ## items table
 
-| Column               | Type        | Options     |
-|----------------------|-------------|-------------|
-| name                 | string      | null: false |
-| description          | text        | null: false |
-| category_id          | integer     | null: false |
-| status_id            | integer     | null: false |
-| shipping_charge_id   | integer     | null: false |
-| shipping_area_id     | integer     | null: false |
-| day_to_ship_id       | integer     | null: false |
-| price                | integer     | null: false |
+| Column               | Type        | Options                        |
+|----------------------|-------------|--------------------------------|
+| name                 | string      | null: false                    |
+| description          | text        | null: false                    |
+| category_id          | integer     | null: false                    |
+| status_id            | integer     | null: false                    |
+| shipping_charge_id   | integer     | null: false                    |
+| shipping_area_id     | integer     | null: false                    |
+| day_to_ship_id       | integer     | null: false                    |
+| price                | integer     | null: false                    |
+| user                 | references  | null: false foreign_key: true  |
 
 ### Association
 
@@ -47,7 +48,7 @@
 
 * belongs_to :user
 * belongs_to :item
-* belongs_to :information
+* has_one :information
 
 ## informations table
 
@@ -63,5 +64,4 @@
 
 ### Association
 
-* has_one :purchase
 * belongs_to :item
