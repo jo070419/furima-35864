@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   with_options presence: true do
-    validates :encrypted_password,:password,:password_confirmation,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/}
+    validates :password,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/}
     validates :nickname
     validates :birthday
     with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/} do
@@ -13,8 +13,8 @@ class User < ApplicationRecord
       validates :first_name
     end
     with_options format: { with: /\A[ァ-ヶー－]+\z/} do
-      validates :ruby_last_name, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width katakana characters."}
-      validates :ruby_first_name, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width katakana characters."}
+      validates :ruby_last_name
+      validates :ruby_first_name
     end
   end
 end
