@@ -4,8 +4,17 @@ RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
   end
-
+  context '新規登録できるとき' do
+    it "image,name,description,category_id,status_id,shipping_charge_id,shipping_area_id,day_to_ship_id,price,user_idが存在すれば登録できる" do
+    expect(@item).to be_valid
+    end
+  end
   context '新規登録できないとき' do
+    it "imageが空だと登録できない" do
+      @item.image = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Image can't be blank")
+    end
     it "nameが空だと登録できない" do
       @item.name = ''
       @item.valid?
@@ -45,6 +54,26 @@ RSpec.describe Item, type: :model do
       @item.price = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
+    end
+    it "priceが¥300以下だと保存できない" do
+      @item.price = 100
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")  
+    end
+    it "priceが¥9,999,999以上だと保存できない" do
+      @item.price = 10000000000000
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")  
+    end
+    it "priceは半角数字でない場合は保存できない" do
+      @item.price = '５００'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not a number")  
+    end
+    it "user_idが空だと登録できない" do
+      @item.user_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("User can't be blank")  
     end
   end
 end

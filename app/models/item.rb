@@ -3,11 +3,12 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :status
-  belongs_to :shippingcharge
-  belongs_to :shippingarea
-  belongs_to :daytoship
+  belongs_to :shipping_charge
+  belongs_to :shipping_area
+  belongs_to :day_to_ship
 
   with_options presence: true do
+    validates :image
     validates :name
     validates :description
     validates :category_id
