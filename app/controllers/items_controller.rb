@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @item = Item.order(id: "ASC")
+    @item = Item.order(id: "DESC")
   end
 
   def new
