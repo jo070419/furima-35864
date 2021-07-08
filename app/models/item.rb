@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_charge
   belongs_to :shipping_area
   belongs_to :day_to_ship
+  belongs_to :user
 
   with_options presence: true do
     validates :image
