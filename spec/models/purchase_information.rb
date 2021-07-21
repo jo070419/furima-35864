@@ -47,6 +47,11 @@ RSpec.describe PurchaseInformation, type: :model do
       @purchase_information.valid?
       expect(@purchase_information.errors.full_messages).to include("Shipping area can't be blank")
     end
+    it "shipping_area_idが1だと登録できない" do
+      @purchase_information.shipping_area_id = 1
+      @purchase_information.valid?
+      expect(@purchase_information.errors.full_messages).to include("Shipping area must be other than 1")
+    end
     it "municipalityが空だと登録できない" do
       @purchase_information.municipality = ''
       @purchase_information.valid?

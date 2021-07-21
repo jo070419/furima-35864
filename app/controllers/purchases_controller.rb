@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
-  before_action :cannot_be_purchased
   before_action :set_item
+  before_action :cannot_be_purchased
   before_action :sold
 
   def index
@@ -8,7 +8,6 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_information = PurchaseInformation.new(purchase_params)
     if @purchase_information.valid?
       pay_item
@@ -35,7 +34,7 @@ class PurchasesController < ApplicationController
   end
 
   def cannot_be_purchased
-    redirect_to root_path unless current_user
+    redirect_to root_path if current_user == @item.user_id
   end
 
   def set_item
