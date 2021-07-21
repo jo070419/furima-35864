@@ -7,7 +7,5 @@ FactoryBot.define do
     house_number        {'1-1'}
     building            {'建物'}
     phone_number        {'09012345678'}
-    #name                { "MyString" }
-    #email               { "MyString" }
   end
 end

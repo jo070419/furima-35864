@@ -4,7 +4,6 @@ class PurchasesController < ApplicationController
   before_action :sold
 
   def index
-    #@item = Item.find(params[:item_id])
     @purchase_information = PurchaseInformation.new
   end
 

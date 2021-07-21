@@ -9,7 +9,11 @@ RSpec.describe PurchaseInformation, type: :model do
   end
   context '購入できるとき' do
     it "item_id,user_id,token,postal_code,shipping_area_id,municipality,house_number,phone_numberが存在すれば登録できる" do
-    expect(@purchase_information).to be_valid
+      expect(@purchase_information).to be_valid
+    end
+    it "buildingが空でも登録できる" do
+      @purchase_information.building = ''
+      expect(@purchase_information).to be_valid
     end
   end
   context '購入できない時' do
@@ -32,6 +36,11 @@ RSpec.describe PurchaseInformation, type: :model do
       @purchase_information.postal_code = ''
       @purchase_information.valid?
       expect(@purchase_information.errors.full_messages).to include("Postal code can't be blank")
+    end
+    it "postal_codeはハイフンが抜けていると登録できない" do
+      @purchase_information.postal_code = '1000000'
+      @purchase_information.valid?
+      expect(@purchase_information.errors.full_messages).to include("Postal code is invalid")
     end
     it "shipping_area_idが空だと登録できない" do
       @purchase_information.shipping_area_id = ''
