@@ -82,5 +82,10 @@ RSpec.describe PurchaseInformation, type: :model do
       @purchase_information.valid?
       expect(@purchase_information.errors.full_messages).to include("Phone number is invalid")
     end
+    it "phone_numberに英字が混じっていると登録できない" do
+      @purchase_information.phone_number = 'o9o12345678'
+      @purchase_information.valid?
+      expect(@purchase_information.errors.full_messages).to include("Phone number is invalid")
+    end
   end
 end
