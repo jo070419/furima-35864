@@ -6,7 +6,8 @@ class CreateInformation < ActiveRecord::Migration[6.0]
       t.string      :municipality,         null: false
       t.string      :house_number,         null: false
       t.string      :building
-      t.string      :phone_namber,         null: false
+      t.string      :phone_number,         null: false
+      t.references  :purchase,             null: false, foreign_key: true
       t.timestamps
     end
   end
