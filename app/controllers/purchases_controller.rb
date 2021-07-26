@@ -2,9 +2,13 @@ class PurchasesController < ApplicationController
   before_action :set_item
   before_action :cannot_be_purchased
   before_action :sold
+  before_action :not_login
 
   def index
-    @purchase_information = PurchaseInformation.new
+      @purchase_information = PurchaseInformation.new
+    if current_user == @item.user
+       redirect_to root_path
+    end
   end
 
   def create
@@ -43,5 +47,9 @@ class PurchasesController < ApplicationController
 
   def sold
     redirect_to root_path if @item.purchase.presence
+  end
+
+  def not_login
+    redirect_to root_path unless user_signed_in?
   end
 end
